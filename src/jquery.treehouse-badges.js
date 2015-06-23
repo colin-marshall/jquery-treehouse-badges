@@ -121,10 +121,11 @@
 				var s = this.settings;
 				var appendElement = this.element;
 				var badgesArray = [];
-				var $badgesContainer = $('<div class="badges-container"></div>');
+				var $badgesContainer = $('<div class="badges"></div>');
 				var jsonURL = 'http://teamtreehouse.com/' + s.username + '.json';
 				var reverse = s.reverse;
 				var badgeSort = s.sortBadgesBy;
+				var $badge;
 
 				if (s.username === false) {
 					console.log('Treehouse Badges Error: No username set in the options.');
@@ -137,15 +138,15 @@
 
 					// INITIALIZE BADGE VARIABLES
 					var fullName = data.name;
-					var badgeName = '';
-					var badgeCourse = '';
-					var badgeIcon = '';
-					var $badge = '';
 					badgesArray = data.badges;
-					
+					var badgeName,
+						badgeCourse,
+						badgeIcon;
 
 					
-					$($badgesContainer).prepend('<h1>' + fullName + '\'s Team Treehouse Badges</h1>');
+
+					$(appendElement).first().append($badgesContainer);
+					$(appendElement).first().prepend('<div class="badges__header"><h1>' + fullName + '\'s Team Treehouse Badges</h1></div>');
 
 
 					// DELETE BADGES THAT HAVE NO COURSE ATTACHED TO THEM 
@@ -167,16 +168,26 @@
 						// STORE THE REST OF THE HTML TO APPEND TO THE BODY
 						badgeName = '<h2><a href="' + thisBadge.url + '">' + thisBadge.name + '</a></h2>';
 						badgeIcon = '<img src="' + thisBadge.icon_url + '" alt="" />';
-						$badge = $('<div class="badge"><div class="badge__inner">' + badgeIcon + badgeName + badgeCourse + '</div></div>');
+						$badge = $('<div class="badges__badge"><div class="badge__inner">' + badgeIcon + badgeName + badgeCourse + '</div></div>');
 
 						// APPEND THIS BADGE TO THE PAGE CONTAINER
-						$($badgesContainer).append($badge);
+						// console.log('append');
+						$badgesContainer.append($badge);
+					}
 
-					} 				
+				});
+				
+				
+				//this.sizeBadges($badgesContainer, $badge);
+			}/*,
 
-				}); 			
+			sizeBadges: function(container) {
+				var containerWidth = container.width();
+				var aBadge = badge;
+				aBadge.css('width', '25%');
+				console.log(aBadge.length());
+			}*/
 
-			} 				
 
 		});
 

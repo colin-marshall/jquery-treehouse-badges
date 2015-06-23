@@ -1,29 +1,32 @@
-.badges-container {
+.badges {
   box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
   overflow: hidden;
   text-align: center;
+  justify-content: center;
 }
 
+.badges__header {
+  text-align: center;
+}
 
-.badge {
+.badges__badge {
   display: flex;
-  width: 33.33%;
+  width: 25%;
   padding: 1rem;
   box-sizing: border-box;
-  
-  @media screen and (min-width: 640px) {
-    width: 25%;
-  }
-  
-  @media screen and (min-width: 780px) {
-    width: 16.667%;
-  }
 }
 
 
-.badge img {
- width: 100%;
- display: block;
+.badge__inner {
+  margin: 0 auto;
+  
+  img {
+    width: 100%;
+    display: block;
+    max-width: 250px;
+    margin: 0 auto;
+  }
 }
+
